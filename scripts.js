@@ -1,20 +1,25 @@
-function computerPlay() {
-    let choices = ["rock", "paper", "scissors"]
-    let randomNumber = parseInt(Math.floor(Math.random() * choices.length));
-    return choices[randomNumber];
-}
+function playRound(playerSelection) {
 
-function playGame(computerPlay, playerSelection) {
+    function computerPlay() {
+        let choices = ["rock", "paper", "scissors"]
+        let randomNumber = parseInt(Math.floor(Math.random() * choices.length));
+        computerChoice = choices[randomNumber];
+        console.log("Computer: " + computerChoice)
+    }
+
+    computerPlay();
     playerSelection = playerSelection.toLowerCase();
-    if (computerPlay === playerSelection) {
-        return ("It's a draw!")
+    console.log("You: " + playerSelection);
+    if (computerChoice === playerSelection) {
+        console.log("It's a draw!")
     }
-    let rules = {rock: "scissors", paper: "rock", scissors: "paper",}
-    if (computerPlay === rules[playerSelection]) {
-        return "You win!"
+    else if (computerChoice === "scissors" && playerSelection === "rock" 
+    || computerChoice === "rock" && playerSelection === "paper" 
+    || computerChoice=== "paper" && playerSelection === "scissors") {
+        console.log("You win!")
     }
-    else return "You lose!"
-}
+    else console.log("You lose!")
+    }
 
 /*function game() {
     for (let i = 0; i < 5; i++) {
@@ -23,5 +28,20 @@ function playGame(computerPlay, playerSelection) {
     }
 }*/
 
-console.log(playGame("rock","scissors"));
+const playerRock = document.querySelector('#playerRock')
 
+playerRock.addEventListener("click", () => {
+    playRound("rock");
+    })
+
+const playerPaper = document.querySelector('#playerPaper')
+
+playerPaper.addEventListener("click", () => {
+        playRound("paper");
+    })
+
+const playerScissors = document.querySelector('#playerScissors')
+
+playerScissors.addEventListener("click", () => {
+    playRound("scissors");
+    })
